@@ -97,7 +97,9 @@ No Space
       <a href="{% url 'web:limpiarCarrito' %}" class="checkout-button button"
         >Limpiar Carrito</a
       >
-      <a href="{#}" class="checkout-button button">Realizar Pedido</a>
+      <a href="{% url 'web:registrarPedido' %}" class="checkout-button button"
+        >Realizar Pedido</a
+      >
       <div class="order-total">
         <p class="cart-totals-ttl">Total</p>
         <p class="cart-totals-val">${{request.session.cartMontoTotal}}</p>
