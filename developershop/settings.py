@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "web",
+    "paypal.standard.ipn",
     "django_admin_tailwind",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -113,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Mexico_City"
 
 USE_I18N = True
 
@@ -135,3 +136,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
+
+PAYPAL_TEST = True
+
+EMAIL_HOST = "sandbox.smtp.mailtrap.io"
+EMAIL_HOST_USER = "486b5dd1ce0dfc"
+EMAIL_HOST_PASSWORD = "30c902f3da3e7f"
+EMAIL_PORT = "2525"
