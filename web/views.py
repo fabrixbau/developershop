@@ -14,6 +14,10 @@ from .carrito import Cart
 from paypal.standard.forms import PayPalPaymentsForm
 from django.urls import reverse
 
+from django.conf.urls import handler404
+from django.http import HttpResponseNotFound
+from django.template import loader
+
 # Create your views here.
 """ VISTAS PARA EL CATALOGO DE PRODUCTOS """
 
@@ -352,3 +356,14 @@ def gracias(request):
         return redirect("/")
 
     return render(request, "gracias.html", context)
+
+
+""" VISTAS PARA MANEJAR LOS ERORRES """
+
+
+def my_custom_page_not_found_view(request, exception):
+    template = loader.get_template("404.html")
+    return HttpResponseNotFound(template.render({}, request))
+
+
+handler404 = my_custom_page_not_found_view
