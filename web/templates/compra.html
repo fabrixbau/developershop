@@ -11,7 +11,7 @@
             {%for detalle in pedido.pedidodetalle_set.all %}
             <article class="prod-li sectls">
                 <div class="prod-li-inner">
-                    <a href="#" class="prod-li-img">
+                    <a href="#" class="prod-li-img" title="producto_imagen">
                         <img src="{{detalle.producto.imagen.url}}" alt="">
                     </a>
                     <div class="prod-li-cont">
@@ -29,9 +29,9 @@
                         </div>
                         <div class="prod-li-qnt-wrap">
                             <p class="qnt-wrap prod-li-qnt">
-                                <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
-                                <input type="text" value="{{detalle.cantidad}}">
-                                <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                                <a href="#" class="qnt-plus prod-li-plus" title="icon"><i class="icon ion-arrow-up-b"></i></a>
+                                <input type="text" value="{{detalle.cantidad}}" title="cantidad">
+                                <a href="#" class="qnt-minus prod-li-minus" title="icon"><i class="icon ion-arrow-down-b"></i></a>
                             </p>
                         </div>
                         <div class="prod-li-total-wrap">
