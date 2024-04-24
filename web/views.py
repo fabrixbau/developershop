@@ -14,7 +14,6 @@ from .carrito import Cart
 from paypal.standard.forms import PayPalPaymentsForm
 from django.urls import reverse
 
-from django.conf.urls import handler404
 from django.http import HttpResponseNotFound
 from django.template import loader
 
@@ -129,7 +128,8 @@ def loginUsuario(request):
         dataPassword = request.POST["password"]
         dataDestino = request.POST["destino"]
 
-        usuarioAuth = authenticate(request, username=dataUsuario, password=dataPassword)
+        usuarioAuth = authenticate(request, username=dataUsuario,
+                                   password=dataPassword)
         if usuarioAuth is not None:
             login(request, usuarioAuth)
 
@@ -162,7 +162,7 @@ def cuentaUsuario(request):
             "sexo": clienteEditar.sexo,
             "fecha_nacimiento": clienteEditar.fecha_nacimiento,
         }
-    except:
+    except dataCliente.DoesNotExist:
         dataCliente = {
             "nombre": request.user.first_name,
             "apellidos": request.user.last_name,
@@ -223,7 +223,8 @@ def view_that_asks_for_money(request):
         "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
         "return": request.build_absolute_uri(("/")),
         "cancel_return": request.build_absolute_uri(("/logout")),
-        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        # Custom command to correlate to some function later (optional)
+        "custom": "premium_plan",
     }
 
     # Create the instance.
@@ -247,7 +248,7 @@ def registrarPedido(request):
             "sexo": clienteEditar.sexo,
             "fecha_nacimiento": clienteEditar.fecha_nacimiento,
         }
-    except:
+    except dataCliente.DoesNotExist:
         dataCliente = {
             "nombre": request.user.first_name,
             "apellidos": request.user.last_name,
@@ -276,7 +277,7 @@ def confirmarPedido(request):
             clientePedido.telefono = request.POST["telefono"]
             clientePedido.direccion = request.POST["direccion"]
             clientePedido.save()
-        except:
+        except clientePedido.DoesNotExist:
             clientePedido = Cliente()
             clientePedido.usuario = actUsuario
             clientePedido.direccion = request.POST["direccion"]
@@ -303,7 +304,8 @@ def confirmarPedido(request):
 
         # actualizar el pedido
         nroPedido = (
-            "PED" + nuevoPedido.fecha_registro.strftime("%Y") + str(nuevoPedido.id)
+            "PED" +
+            nuevoPedido.fecha_registro.strftime("%Y") + str(nuevoPedido.id)
         )
         nuevoPedido.nro_pedido = nroPedido
         nuevoPedido.monto_total = montoTotal
@@ -364,6 +366,3 @@ def gracias(request):
 def my_custom_page_not_found_view(request, exception):
     template = loader.get_template("404.html")
     return HttpResponseNotFound(template.render({}, request))
-
-
-handler404 = my_custom_page_not_found_view

@@ -5,8 +5,7 @@
       {% for categoria in categorias %}
       <li>
         <a href="{% url 'web:productosPorCategoria' categoria.id %}">
-          <span class="section-sb-label"
-            >{{categoria.nombre}}
+          <span class="section-sb-label">{{categoria.nombre}}
             <span class="count">{{categoria.producto_set.all.count}}</span>
           </span>
         </a>

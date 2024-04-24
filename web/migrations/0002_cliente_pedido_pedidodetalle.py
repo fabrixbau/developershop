@@ -16,34 +16,50 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Cliente',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True,
+                                           serialize=False,
+                                           verbose_name='ID')),
                 ('dni', models.CharField(max_length=40)),
                 ('sexo', models.CharField(default='M', max_length=1)),
                 ('telefono', models.CharField(max_length=20)),
                 ('fecha_nacimiento', models.DateField(null=True)),
                 ('direccion', models.TextField()),
-                ('usuario', models.OneToOneField(on_delete=django.db.models.deletion.RESTRICT, to=settings.AUTH_USER_MODEL)),
+                ('usuario', models.OneToOneField(
+                    on_delete=django.db.models.deletion.RESTRICT,
+                    to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='Pedido',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('fecha_registro', models.DateTimeField(auto_now_add=True)),
                 ('nro_pedido', models.CharField(max_length=20, null=True)),
-                ('monto_total', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
-                ('estado', models.CharField(choices=[('0', 'Solicitado'), ('1', 'Pagado')], default='0', max_length=1)),
-                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='web.cliente')),
+                ('monto_total', models.DecimalField(
+                    decimal_places=2, default=0, max_digits=10)),
+                ('estado', models.CharField(choices=[
+                 ('0', 'Solicitado'),
+                 ('1', 'Pagado')], default='0', max_length=1)),
+                ('cliente', models.ForeignKey(
+                    on_delete=django.db.models.deletion.RESTRICT,
+                    to='web.cliente')),
             ],
         ),
         migrations.CreateModel(
             name='PedidoDetalle',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('cantidad', models.IntegerField(default=1)),
-                ('subtotal', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('pedido', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='web.pedido')),
-                ('producto', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='web.producto')),
+                ('subtotal', models.DecimalField(decimal_places=2,
+                                                 max_digits=10)),
+                ('pedido', models.ForeignKey(
+                    on_delete=django.db.models.deletion.RESTRICT,
+                    to='web.pedido')),
+                ('producto', models.ForeignKey(
+                    on_delete=django.db.models.deletion.RESTRICT,
+                    to='web.producto')),
             ],
         ),
     ]
