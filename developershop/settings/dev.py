@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -180,8 +181,11 @@ MEDIA_URL = "/media/"
 
 
 PAYPAL_TEST = True
+PAYPAL_USER_EMAIL = config('PAYPAL_USER_EMAIL')
 
 EMAIL_HOST = "sandbox.smtp.mailtrap.io"
 EMAIL_HOST_USER = "486b5dd1ce0dfc"
 EMAIL_HOST_PASSWORD = "30c902f3da3e7f"
 EMAIL_PORT = "2525"
+
+ADMIN_USER_EMAIL = config('ADMIN_USER_EMAIL')

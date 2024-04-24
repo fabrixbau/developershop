@@ -17,6 +17,8 @@ from django.urls import reverse
 from django.http import HttpResponseNotFound
 from django.template import loader
 
+from django.conf import settings
+
 # Create your views here.
 """ VISTAS PARA EL CATALOGO DE PRODUCTOS """
 
@@ -216,7 +218,7 @@ def view_that_asks_for_money(request):
 
     # What you want the button to do.
     paypal_dict = {
-        "business": "sb-91xj030113850@business.example.com",
+        "business": settings.PAYPAL_USER_EMAIL,
         "amount": "100.00",
         "item_name": "Producto prueba edteam",
         "invoice": "100-developershop",
@@ -316,7 +318,7 @@ def confirmarPedido(request):
 
         # creamos boton de paypal
         paypal_dict = {
-            "business": "sb-91xj030113850@business.example.com",
+            "business": settings.PAYPAL_USER_EMAIL,
             "amount": montoTotal,
             "item_name": "PEDIDO CODIGO : " + nroPedido,
             "invoice": nroPedido,
@@ -346,10 +348,11 @@ def gracias(request):
         pedido = Pedido.objects.get(pk=pedidoId)
         pedido.estado = "1"
         pedido.save()
+
         send_mail(
             "Gracias por tu compra",
             "Tu numero de pedido es " + pedido.nro_pedido,
-            "bautistafabrizio@gmail.com",
+            settings.ADMIN_USER_EMAIL,
             [request.user.email],
             fail_silently=False,
         )
