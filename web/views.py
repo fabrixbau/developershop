@@ -164,7 +164,7 @@ def cuentaUsuario(request):
             "sexo": clienteEditar.sexo,
             "fecha_nacimiento": clienteEditar.fecha_nacimiento,
         }
-    except dataCliente.DoesNotExist:
+    except Cliente.DoesNotExist:
         dataCliente = {
             "nombre": request.user.first_name,
             "apellidos": request.user.last_name,
@@ -369,3 +369,26 @@ def gracias(request):
 def my_custom_page_not_found_view(request, exception):
     template = loader.get_template("404.html")
     return HttpResponseNotFound(template.render({}, request))
+
+
+""" VISTAS PARA ADMIN Y PEDIDOS """
+
+
+@login_required
+def lista_pedidos(request):
+    if request.user.is_superuser:
+        pedidos = Pedido.objects.all().order_by('-fecha_registro')
+        return render(request, 'lista_pedidos.html', {'pedidos': pedidos})
+    else:
+        return redirect('/')
+
+
+@login_required
+def detalle_pedido(request, pedido_id):
+    if request.user.is_superuser:
+        pedido = get_object_or_404(Pedido, id=pedido_id)
+        detalles = PedidoDetalle.objects.filter(pedido=pedido)
+        return render(request, 'detalle_pedido.html', {'pedido': pedido,
+                                                       'detalles': detalles})
+    else:
+        return redirect('/')

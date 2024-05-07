@@ -35,4 +35,7 @@ urlpatterns = [
     path("pruebapaypal", views.view_that_asks_for_money, name="pruebapaypal"),
     path("confirmarPedido", views.confirmarPedido, name="confirmarPedido"),
     path("gracias", views.gracias, name="gracias"),
+    path('lista_pedidos/', views.lista_pedidos, name='lista_pedidos'),
+    path('detalle_pedido/<int:pedido_id>/',
+         views.detalle_pedido, name='detalle_pedido'),
 ]
