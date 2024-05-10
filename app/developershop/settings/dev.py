@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
-import os
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,11 +83,11 @@ WSGI_APPLICATION = "developershop.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "db_ecommerce",
-        "USER": "root",
-        "PASSWORD": "1234",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
+        "NAME": 'db_ecommerce',
+        "USER": 'root',
+        "PASSWORD": '1234',
+        "HOST": '127.0.0.1',
+        "PORT": '3307',
     }
 }
 
@@ -170,6 +169,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -179,13 +179,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
 
-PAYPAL_TEST = True
+PAYPAL_TEST = config('PAYPAL_TEST', default=True, cast=bool)
 PAYPAL_USER_EMAIL = config('PAYPAL_USER_EMAIL')
-
-EMAIL_HOST = "sandbox.smtp.mailtrap.io"
-EMAIL_HOST_USER = "486b5dd1ce0dfc"
-EMAIL_HOST_PASSWORD = "30c902f3da3e7f"
-EMAIL_PORT = "2525"
 
 ADMIN_USER_EMAIL = config('ADMIN_USER_EMAIL')
