@@ -1,6 +1,9 @@
+mysqlclient
 django==3.2
 Pillow
 django-admin-tailwind
 django-paypal
 python-decouple
 gunicorn
+mysql
+dj-database-url

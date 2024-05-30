@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+from .base import *
+import dj_database_url
 import os
 from decouple import config
 
@@ -80,14 +81,7 @@ WSGI_APPLICATION = "developershop.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": config('DATABASE_NAME'),
-        "USER": config('DATABASE_USR'),
-        "PASSWORD": config('DATABASE_PWD'),
-        "HOST": config('DATABASE_HOST'),
-        "PORT": config('DATABASE_PORT'),
-    }
+    "default": dj_database_url.config(default=config('JAWSDB_URL'))
 }
 
 

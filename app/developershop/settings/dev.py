@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from .base import *
 from pathlib import Path
 from decouple import config
 import os
@@ -29,7 +30,7 @@ SECRET_KEY = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -83,11 +84,11 @@ WSGI_APPLICATION = "developershop.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": 'db_ecommerce',
-        "USER": 'root',
-        "PASSWORD": '1234',
-        "HOST": '127.0.0.1',
-        "PORT": '3307',
+        "NAME": config('DATABASE_NAME'),
+        "USER": config('DATABASE_USR'),
+        "PASSWORD": config('DATABASE_PWD'),
+        "HOST": config('DATABASE_HOST'),
+        "PORT": config('DATABASE_PORT'),
     }
 }
 
