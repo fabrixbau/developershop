@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from paypalrestsdk import Payment
+import paypalrestsdk
 from pathlib import Path
 from .base import *
 import dj_database_url
