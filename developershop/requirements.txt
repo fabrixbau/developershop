@@ -27,6 +27,7 @@ pycparser==2.22
 pyOpenSSL==24.1.0
 pyparsing==3.1.2
 PySocks==1.7.1
+python-decouple==3.8
 requests==2.32.2
 rsa==4.9
 selenium==4.21.0
