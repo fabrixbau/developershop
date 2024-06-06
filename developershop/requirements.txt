@@ -44,3 +44,4 @@ uritemplate==4.1.1
 urllib3==2.2.1
 wsproto==1.2.0
 # Force reinstall
+django-paypal

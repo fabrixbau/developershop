@@ -19,6 +19,13 @@ from django.template import loader
 
 from django.conf import settings
 
+try:
+    import paypalrestsdk
+    from paypal.standard.forms import PayPalPaymentsForm
+except ImportError as e:
+    print(f"Error importing modules: {e}")
+
+
 # Create your views here.
 """ VISTAS PARA EL CATALOGO DE PRODUCTOS """
 
