@@ -9,7 +9,11 @@ from .base import *
 import dj_database_url
 import os
 from decouple import config
-import paypalrestsdk  # Importando el módulo correcto
+
+try:
+    import paypalrestsdk
+except ImportError as e:
+    print(f"Error importing paypalrestsdk: {e}")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
