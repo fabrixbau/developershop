@@ -47,3 +47,4 @@ wsproto==1.2.0
 django-paypal
 django-admin-tailwind
 psycopg2-binary
+Pillow
