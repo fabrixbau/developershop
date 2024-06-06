@@ -6,7 +6,7 @@ cffi==1.16.0
 charset-normalizer==3.3.2
 cryptography==42.0.8
 dj-database-url==2.2.0
-django==4.2  # Agrega un comentario para forzar la reinstalación
+Django==4.2  # Agrega un comentario para forzar la reinstalación
 google-api-core==2.19.0
 google-api-python-client==2.130.0
 google-auth==2.29.0
