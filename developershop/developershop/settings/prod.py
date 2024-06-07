@@ -137,4 +137,4 @@ PAYPAL_USER_EMAIL = config('PAYPAL_USER_EMAIL')
 
 ADMIN_USER_EMAIL = config('ADMIN_USER_EMAIL')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'web/static')]
