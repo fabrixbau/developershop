@@ -48,3 +48,4 @@ django-paypal
 django-admin-tailwind
 psycopg2-binary
 Pillow
+whitenoise
